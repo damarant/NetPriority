@@ -1,5 +1,4 @@
 
-```markdown
 # NetPriority
 
 ![Version](https://img.shields.io/badge/version-1.1-blue)
@@ -157,4 +156,4 @@ Copyright (c) 2025 **damarant**.
 
 - Version: **1.1.0**
 - Year: **2025**
-```
+
