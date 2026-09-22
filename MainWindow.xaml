@@ -1,0 +1,295 @@
+﻿<Window x:Class="NetPriority.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NetPriority"
+        Width="1250"
+        Height="850"
+        MinWidth="1000"
+        MinHeight="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="24">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ================================================= -->
+        <!-- HEADER                                            -->
+        <!-- ================================================= -->
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+
+                <TextBlock
+                    Text="NetPriority"
+                    FontSize="30"
+                    FontWeight="SemiBold"/>
+
+                <TextBlock
+                    Text="Application network priority management"
+                    Foreground="Gray"
+                    Margin="0,4,0,0"/>
+
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+
+                <TextBlock
+                    x:Name="AdminStatusText"
+                    VerticalAlignment="Center"
+                    Foreground="Gray"/>
+
+                <Button
+                    Content="ℹ About"
+                    Width="90"
+                    Height="30"
+                    Margin="14,0,0,0"
+                    Click="AboutButton_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- ================================================= -->
+        <!-- APPLICATION SEARCH                                -->
+        <!-- ================================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Margin="0,20,0,12">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox
+                x:Name="SearchBox"
+                Height="36"
+                Padding="10"
+                VerticalContentAlignment="Center"
+                ToolTip="Search application"/>
+
+            <Button
+                Grid.Column="1"
+                Content="🔍 Search"
+                Width="100"
+                Height="36"
+                Margin="10,0,0,0"
+                Click="SearchButton_Click"/>
+
+            <Button
+                Grid.Column="2"
+                Content="↻ Refresh"
+                Width="110"
+                Height="36"
+                Margin="10,0,0,0"
+                Click="RefreshButton_Click"/>
+
+        </Grid>
+
+        <!-- ================================================= -->
+        <!-- APPLICATIONS                                      -->
+        <!-- ================================================= -->
+
+        <GroupBox
+            Grid.Row="2"
+            Header="Running applications">
+
+            <ListView
+                x:Name="ApplicationsList"
+                SelectionChanged="ApplicationsList_SelectionChanged">
+
+                <ListView.View>
+
+                    <GridView>
+
+                        <GridViewColumn
+                            Header="Application"
+                            DisplayMemberBinding="{Binding ProcessName}"
+                            Width="220"/>
+
+                        <GridViewColumn
+                            Header="PID"
+                            DisplayMemberBinding="{Binding ProcessId}"
+                            Width="80"/>
+
+                        <GridViewColumn
+                            Header="Path"
+                            DisplayMemberBinding="{Binding ExecutablePath}"
+                            Width="720"/>
+
+                    </GridView>
+
+                </ListView.View>
+
+            </ListView>
+
+        </GroupBox>
+
+        <!-- ================================================= -->
+        <!-- SELECTED APPLICATION                              -->
+        <!-- ================================================= -->
+
+        <GroupBox
+            Grid.Row="3"
+            Header="Selected application"
+            Margin="0,14,0,14"
+            Padding="12">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+
+                    <TextBlock
+                        x:Name="SelectedApplicationText"
+                        FontWeight="SemiBold"
+                        Text="No application selected."/>
+
+                    <TextBlock
+                        x:Name="SelectedApplicationPathText"
+                        Foreground="Gray"
+                        Margin="0,4,0,0"/>
+
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+
+                    <Button
+                        Content="📂 Select EXE"
+                        Width="140"
+                        Height="36"
+                        Margin="0,0,10,0"
+                        Click="SelectExeButton_Click"/>
+
+                    <Button
+                        Content="⚡ Create rule"
+                        Width="140"
+                        Height="36"
+                        Click="CreatePolicyButton_Click"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </GroupBox>
+
+        <!-- ================================================= -->
+        <!-- QOS RULES                                         -->
+        <!-- ================================================= -->
+
+        <GroupBox
+            Grid.Row="4"
+            Header="QoS rules">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ListView
+                    x:Name="PoliciesList">
+
+                    <ListView.View>
+
+                        <GridView>
+
+                            <GridViewColumn
+                                Header="Name"
+                                DisplayMemberBinding="{Binding Name}"
+                                Width="230"/>
+
+                            <GridViewColumn
+                                Header="Application"
+                                DisplayMemberBinding="{Binding ApplicationPath}"
+                                Width="400"/>
+
+                            <GridViewColumn
+                                Header="DSCP"
+                                DisplayMemberBinding="{Binding DscpValue}"
+                                Width="70"/>
+
+                            <GridViewColumn
+                                Header="Owner"
+                                DisplayMemberBinding="{Binding Owner}"
+                                Width="180"/>
+
+                            <GridViewColumn
+                                Header="Managed by NetPriority"
+                                DisplayMemberBinding="{Binding IsManagedByNetPriority}"
+                                Width="150"/>
+
+                        </GridView>
+
+                    </ListView.View>
+
+                </ListView>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="0,10,0,0">
+
+                    <Button
+                        Content="↻ Refresh rules"
+                        Width="140"
+                        Height="34"
+                        Click="RefreshPoliciesButton_Click"/>
+
+                    <Button
+                        Content="🗑 Remove rule"
+                        Width="150"
+                        Height="34"
+                        Margin="10,0,0,0"
+                        Click="RemovePolicyButton_Click"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </GroupBox>
+
+        <!-- ================================================= -->
+        <!-- STATUS                                            -->
+        <!-- ================================================= -->
+
+        <Border
+            Grid.Row="5"
+            Margin="0,14,0,0"
+            Padding="10"
+            Background="#F3F3F3">
+
+            <TextBlock
+                x:Name="StatusText"
+                Foreground="Gray"/>
+
+        </Border>
+
+    </Grid>
+
+</Window>

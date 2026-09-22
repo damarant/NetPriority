@@ -1,0 +1,105 @@
+<Window x:Class="NetPriority.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About NetPriority"
+        Width="470"
+        Height="440"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <Grid Margin="24">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ================================================= -->
+        <!-- TITLE                                             -->
+        <!-- ================================================= -->
+
+        <StackPanel>
+
+            <TextBlock
+                Text="NetPriority"
+                FontSize="28"
+                FontWeight="SemiBold"/>
+
+            <TextBlock
+                Text="Version 1.1"
+                Foreground="Gray"
+                Margin="0,4,0,0"/>
+
+        </StackPanel>
+
+        <!-- ================================================= -->
+        <!-- DESCRIPTION                                       -->
+        <!-- ================================================= -->
+
+        <TextBlock
+            Grid.Row="1"
+            Margin="0,20,0,0"
+            TextWrapping="Wrap"
+            Text="Application network priority management for Windows, based on QoS policies and DSCP values."/>
+
+        <!-- ================================================= -->
+        <!-- AUTHOR / LICENSE / COPYRIGHT                      -->
+        <!-- ================================================= -->
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,20,0,0">
+
+            <TextBlock>
+                <Run Text="Author: " FontWeight="SemiBold"/>
+                <Run Text="damarant"/>
+            </TextBlock>
+
+            <TextBlock
+                Margin="0,8,0,0">
+                <Run Text="License: " FontWeight="SemiBold"/>
+                <Run Text="MIT"/>
+            </TextBlock>
+
+            <TextBlock
+                Margin="0,8,0,0">
+                <Run Text="Copyright: " FontWeight="SemiBold"/>
+                <Run Text="© 2025 damarant"/>
+            </TextBlock>
+
+            <TextBlock
+                Margin="0,20,0,0"
+                TextWrapping="Wrap"
+                Foreground="Gray"
+                Text="Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, subject to the inclusion of the above copyright notice and this permission notice in all copies or substantial portions of the Software. The software is provided &quot;as is&quot;, without warranty of any kind."/>
+
+            <TextBlock
+                Margin="0,14,0,0"
+                TextWrapping="Wrap">
+                <Hyperlink
+                    Click="LicenseLink_Click">
+                    View the full MIT license
+                </Hyperlink>
+            </TextBlock>
+
+        </StackPanel>
+
+        <!-- ================================================= -->
+        <!-- CLOSE                                             -->
+        <!-- ================================================= -->
+
+        <Button
+            Grid.Row="3"
+            Content="Close"
+            Width="100"
+            Height="34"
+            HorizontalAlignment="Right"
+            Margin="0,20,0,0"
+            Click="CloseButton_Click"/>
+
+    </Grid>
+
+</Window>
