@@ -12,6 +12,8 @@
 ## Table of Contents
 
 - [Features](#features)
+- [Why NetPriority](#why-netpriority)
+- [Screenshots](#screenshots)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -32,6 +34,41 @@
 - Lists all QoS policies present on the system.
 - Removes selected QoS policies (with confirmation for those not managed by NetPriority).
 - Shows administrator privilege status.
+
+---
+## Why NetPriority
+
+Three scenarios where Windows QoS and DSCP tagging make a measurable difference — without touching PowerShell or hidden system menus.
+
+### 🎮 Lower latency in games
+
+- Tags game traffic with **DSCP 46 (Gaming)** so routers that honor QoS give it priority over background downloads or streams.
+- Prevents **lag spikes** caused by other devices on the same network saturating the link (bufferbloat).
+
+### 🎥 Smooth streaming and calls
+
+- **DSCP 34 (Video)** keeps Discord, Teams, Zoom or YouTube smooth when bandwidth is saturated.
+- **DSCP 40 (Signaling)** protects VoIP audio from stuttering or degrading during heavy traffic.
+
+### 🎛️ Full control, simple UI
+
+- Manage everything from a **graphical interface**: pick a running process or a `.exe` file and click a button — no `netsh` or PowerShell required.
+- Choose between **permanent rules** (kept after NetPriority closes) or **temporary rules** (cleaned up on exit).
+- **Auto-detection** of running applications removes the need to hunt for executable paths on disk.
+
+> **Note**: to fully benefit from DSCP tagging, your router must also support QoS and have it enabled for the marked packets.
+
+---
+
+## Screenshots
+
+The main window: running applications, the selected target, and the current QoS rules.
+
+<p align="center">
+  <img src="docs/screenshots/NetPriority.jpg"
+       alt="NetPriority main window — running applications list, selected application panel, and QoS rules table"
+       width="900">
+</p>
 
 ---
 
